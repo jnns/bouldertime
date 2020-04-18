@@ -3,4 +3,5 @@
 /frontend/*cache*
 /frontend/static/
 __pycache__
+.pytest_cache
 node_modules
