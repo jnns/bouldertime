@@ -1,0 +1,8 @@
+black
+django
+djangorestframework
+django-debug-toolbar
+pip-tools
+pytest
+pytest-django
+psycopg2-binary

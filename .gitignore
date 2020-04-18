@@ -1,0 +1,6 @@
+*sublime*
+/.venv
+/frontend/*cache*
+/frontend/static/
+__pycache__
+node_modules

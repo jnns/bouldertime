@@ -1,0 +1,16 @@
+{% load static %}
+{% load i18n %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}bouldertime.eu{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{% trans "Save your spot for going bouldering" %}{% endblock %}">
+  <link rel="stylesheet" href="{% static "index.css" %}">
+</head>
+
+<body>
+  {% block body %}{% endblock %}
+  <script src="{% static "index.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+@use "sass:color";
+
+$free: #87f1ff;
+$not-available: #d33232;
+$available: #f9dc5c;
+$border-radius: 2px;
+
+.hour {
+  &__attendance {
+    display: block;
+    width: 100%;
+    max-height: 100%;
+    border-radius: $border-radius;
+
+    &--available {
+      background-color: $available;
+    }
+
+    &--not-available {
+      background-color: $not-available;
+    }
+  }
+}
+
+.day {
+  font-family: monospace;
+  margin: 1em 0;
+  height: 100px;
+  display: flex;
+  position: relative;
+
+  &__hour {
+    display: flex;
+    flex-basis: 100%;
+    align-items: flex-end;
+    height: 100%;
+    background-color: $free;
+    border-right: 1px solid white;
+    border-radius: $border-radius;
+
+    &:hover {
+      cursor: pointer;
+      background-color: color.adjust($free, $lightness: -30%);
+
+      & .hour__attendance {
+        &--available {
+          background-color: color.adjust($available, $lightness: -30%);
+        }
+
+        &--not-available {
+          background-color: color.adjust($not-available, $lightness: -30%);
+        }
+      }
+    }
+
+    &::before {
+      position: absolute;
+      bottom: -1.5em;
+      content: attr(data-hour) "";
+      transform: translateX(-0.25em);
+    }
+  }
+}
