@@ -1,7 +1,7 @@
 import React from "react";
 
 import Day from "./Day";
-import Form from "./Form";
+import BookingForm from "./BookingForm";
 
 class BookingControl extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class BookingControl extends React.Component {
           onHourSelect={this.onHourSelect}
         />
         {this.state.startHour ? (
-          <Form
+          <BookingForm
             selectedHour={this.state.startHour}
             startOptions={Object.keys(this.props.bookables)}
             endOptions={this.props.bookables[this.state.startHour]}

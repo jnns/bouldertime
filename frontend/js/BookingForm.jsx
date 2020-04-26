@@ -2,7 +2,7 @@ import React from "react";
 import DjangoCSRFToken from "django-react-csrftoken";
 import PhoneNumberInput from "./PhoneNumberInput";
 
-class Form extends React.Component {
+class BookingForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -37,19 +37,22 @@ class Form extends React.Component {
         &nbsp;&mdash;&nbsp;
         <select
           name="end"
-          value={this.props.endOptions[0]}
-          onChange={this.handleChange}
+          defaultValue={this.props.endOptions[0]}
           disabled={Boolean(!endOptions.length)}
         >
           {endOptions}
         </select>
-        <label>
-          Your cell phone number: <PhoneNumberInput />
-        </label>
-        <input type="submit" value="Request booking code" />
+        <p>
+          <label>
+            Your cell phone number: <PhoneNumberInput />
+          </label>
+        </p>
+        <p>
+          <input type="submit" value="Request booking code" />
+        </p>
       </form>
     );
   }
 }
 
-export default Form;
+export default BookingForm;

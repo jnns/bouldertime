@@ -1,0 +1,13 @@
+{% extends "core/gym_list.html" %}
+
+{% block body %}
+  Reserve a spot to go bouldering at
+  <h1>{{ gym }}</h1>
+  <script>
+    const attendance = {{ attendance|safe }};
+    const bookables = {{ bookables|safe }};
+  </script>
+  {{ form.errors }}
+  <div id=booking-control></div>
+
+{% endblock %}

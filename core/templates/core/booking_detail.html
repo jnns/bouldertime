@@ -1,0 +1,9 @@
+{% extends "core/gym_list.html" %}
+
+{% block body %}
+  <h1>So far so good.</h1>
+  <h2>You're booking code is: <tt>{{ booking }}</tt></h2>
+  <p>Date: {{ booking.date }}</p>
+  <p>Duration: {{ booking.start }} &mdash; {{ booking.end }}</p>
+  <p>Location: {{ booking.gym }}</p>
+{% endblock %}

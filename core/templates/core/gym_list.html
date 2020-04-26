@@ -3,7 +3,7 @@
 
 {% block body %}
   {% trans "Reserve a spot to go bouldering at ... " %}
-  <form onchange='javascript:document.location.href=this.id_gym.options[this.id_gym.selectedIndex].value'>
+  <form onchange='javascript:document.location.href="/g/" + this.id_gym.options[this.id_gym.selectedIndex].value'>
     {{ form.gym }}
   </form>
 {% endblock body %}
