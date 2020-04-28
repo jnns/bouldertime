@@ -19,8 +19,8 @@ def gym():
 def test_booking(get_identifier, gym, client):
     get_identifier.return_value = "12-hippopotamus"
     booking_data = {"start": 14, "end": 16, "phone_no": "0123456789"}
-    gym_url = reverse("gym-detail", kwargs={"gym": "example-gym"})
+    gym_url = reverse("booking-create", kwargs={"gym": "example-gym"})
     response = client.post(gym_url, booking_data, follow=True)
     assert "12-hippopotamus" in response.content.decode()
-    assert "2 pm" in response.content.decode()
-    assert "4 pm" in response.content.decode()
+    assert "2 p.m." in response.content.decode()
+    assert "4 p.m." in response.content.decode()

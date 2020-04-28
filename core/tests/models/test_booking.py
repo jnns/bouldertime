@@ -25,7 +25,8 @@ def test_pin(gym):
 
 
 @pytest.mark.parametrize(
-    "attempts,num_of_identifiers", [(0, 100), (1, 1000), (2, 10000), (3, 30000)]
+    "attempts,num_of_identifiers",
+    [(0, 10), (1, 100), (2, 1000), (3, 10000), (4, 30000)],
 )
 def test_get_identifier(attempts, num_of_identifiers):
     used = [get_identifier(attempts) for _ in range(num_of_identifiers)]

@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import pytest
 
-from core.models import Gym
+from core.models import Booking, Gym
 
 
 @pytest.mark.parametrize(
@@ -43,4 +43,14 @@ def test_get_bookables(mocked_get_attendance):
         14: [15],
         15: [],
         16: [17],
+    }
+
+
+@pytest.mark.django_db
+def test_get_attendance():
+    gym = Gym.objects.create(opens_at=time(10), closes_at=time(12), max_guests=4)
+    Booking.objects.create(gym=gym, start=time(10), end=time(11))
+    assert gym.get_attendance() == {
+        10: 25,
+        11: 0,
     }
