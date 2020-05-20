@@ -130,3 +130,6 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ]
 }
+TWILIO_ACCOUNT_SID = ""
+TWILIO_AUTH_TOKEN = ""
+SMS_BACKEND = "ConsoleSMSBackend"
