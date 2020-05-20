@@ -4,5 +4,5 @@ djangorestframework
 django-debug-toolbar
 pip-tools
 pytest
-pytest-django
+-e git+https://github.com/jnns/pytest-django#egg=pytest-django@admin-client-fix
 psycopg2-binary
