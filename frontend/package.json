@@ -6,11 +6,14 @@
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.9.4",
+    "babel-eslint": "^10.1.0",
     "django-react-csrftoken": "^1.0.4",
+    "eslint-plugin-babel": "^5.3.0",
     "js": "^0.1.0",
     "parcel": "^1.12.4",
     "prettier": "^2.0.4",
     "react": "^15.3.2 || ^16.0.0",
+    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
     "sass": "^1.26.3",
     "stylelint": "^13.3.2",
@@ -18,9 +21,12 @@
     "stylelint-scss": "^3.17.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.9.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0"
   },
   "scripts": {
-    "watch": "parcel watch index.js -d static --no-cache --no-source-maps"
+    "watch": "yarn run parcel watch index.jsx dashboard.jsx -d static  --no-cache --public-url /static"
   }
 }

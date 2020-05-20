@@ -14,6 +14,8 @@ $border-radius: 2px;
 
     &--available {
       background-color: $available;
+      border-top-left-radius: 0.5em;
+      border-top-right-radius: 0.5em;
     }
 
     &--not-available {
@@ -24,10 +26,14 @@ $border-radius: 2px;
 
 .day {
   font-family: monospace;
-  margin: 1em 0;
+  margin: 2em 0;
   height: 100px;
   display: flex;
   position: relative;
+
+  &__title {
+    font-size: 1em;
+  }
 
   &__hour {
     display: flex;
@@ -37,6 +43,7 @@ $border-radius: 2px;
     background-color: $free;
     margin: 0 0.5px;
     border-radius: $border-radius;
+    transition: background-color 0.2s ease;
 
     &--selected {
       box-shadow: 0 0 0 4px #1781b7;
@@ -58,17 +65,7 @@ $border-radius: 2px;
 
         &--not-available {
           background-color: color.adjust($not-available, $lightness: -30%);
-          background-image: linear-gradient(
-            135deg,
-            #ccc 25%,
-            #fff 25%,
-            #fff 50%,
-            #ccc 50%,
-            #ccc 75%,
-            #fff 75%,
-            #fff 100%
-          );
-          background-size: 1em 1em;
+          cursor: not-allowed;
         }
       }
     }

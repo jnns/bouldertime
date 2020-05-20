@@ -1,24 +1,28 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 class GymForm extends React.Component {
-  constructor(props) {
-    this.handleChange = this.handleChange.bind(this);
-  }
   handleChange(e) {
-    const gymName = e.target.value;
-    document.href = `/g/${gymName}/`;
+    const gym = e.target.value;
+    if (gym) {
+      document.location.href = `/${gym}/`;
+    }
   }
   render() {
-    <select
-      name="gym"
-      defaultValue={this.props.gym}
-      onChange={this.handleChange}
-    >
-      {this.props.options.map((name, slug) => (
-        <option value={slug}>{name}</option>
-      ))}
-    </select>;
+    return (
+      <select name="gym" onChange={(e) => this.handleChange(e)}>
+        <option>---</option>
+        {this.props.options.map((gym) => (
+          <option key={gym.slug} value={gym.slug}>
+            {gym.name}
+          </option>
+        ))}
+      </select>
+    );
   }
 }
 
-export default GymForm;
+ReactDOM.render(
+  <GymForm options={window.gyms} />,
+  document.querySelector("[id=gym]")
+);

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "dashboard.css" %}">
+{% endblock %}
+
+{% block body %}
+<div id="dashboard" data-max-guests={{ gym.max_guests }}></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static "dashboard.js" %}"></script>
+{% endblock %}

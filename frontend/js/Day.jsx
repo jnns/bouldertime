@@ -1,32 +1,44 @@
 import React from "react";
 
 import Hour from "./Hour";
+import BookingForm from "./BookingForm";
 
-class Day extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hour: null };
-    this.onClick = this.onClick.bind(this);
-  }
-  onClick(hour) {
-    this.setState({ hour: hour });
-    this.props.onHourSelect(hour);
-  }
-  render() {
-    return (
+function Day(props) {
+  let options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const dateDisplay = new Date(props.date).toLocaleString("de-DE", options);
+
+  const bookingForm = props.selectedHour && (
+    <BookingForm
+      selectedDate={props.date}
+      selectedHour={props.selectedHour}
+      startOptions={Object.keys(props.bookables)}
+      endOptions={props.bookables[props.selectedHour]}
+      onHourSelect={(hour) => props.onHourSelect(props.date, hour)}
+    />
+  );
+
+  return (
+    <>
+      <h1 className="day__title">{dateDisplay}</h1>
       <div className="day">
-        {Object.keys(this.props.attendance).map((hour) => (
+        {Object.keys(props.attendance).map((hour) => (
           <Hour
             key={hour}
             hour={hour}
-            attendance={this.props.attendance[hour]}
-            onClick={this.onClick}
-            selected={this.state.hour == hour}
+            attendance={props.attendance[hour]}
+            selected={props.selectedHour == hour}
+            onClick={() => props.onHourSelect(props.date, hour)}
           />
         ))}
       </div>
-    );
-  }
+      {bookingForm}
+    </>
+  );
 }
 
 export default Day;

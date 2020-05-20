@@ -1,33 +1,27 @@
 import React from "react";
 
 import Day from "./Day";
-import BookingForm from "./BookingForm";
 
 class BookingControl extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { startHour: null, endHour: null };
-    this.onHourSelect = this.onHourSelect.bind(this);
-  }
-  onHourSelect(hour) {
-    this.setState({ startHour: hour });
-  }
+  state = { date: null, hour: null, endHour: null };
+
   render() {
     return (
       <>
-        <Day
-          attendance={this.props.attendance}
-          bookables={this.props.bookables}
-          onHourSelect={this.onHourSelect}
-        />
-        {this.state.startHour ? (
-          <BookingForm
-            selectedHour={this.state.startHour}
-            startOptions={Object.keys(this.props.bookables)}
-            endOptions={this.props.bookables[this.state.startHour]}
-            onHourSelect={this.onHourSelect}
-          />
-        ) : null}
+        {Object.keys(this.props.attendance).map((date) => {
+          return (
+            <Day
+              key={date}
+              date={date}
+              selectedHour={this.state.date === date ? this.state.hour : null}
+              attendance={this.props.attendance[date]}
+              bookables={this.props.bookables[date]}
+              onHourSelect={(date, hour) =>
+                this.setState({ date: date, hour: hour })
+              }
+            />
+          );
+        })}
       </>
     );
   }
