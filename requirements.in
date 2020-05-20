@@ -7,3 +7,4 @@ pytest
 -e git+https://github.com/jnns/pytest-django#egg=pytest-django@admin-client-fix
 psycopg2-binary
 twilio
+qrcode
