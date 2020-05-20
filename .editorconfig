@@ -8,6 +8,7 @@ trim_trailing_whitespace = true
 end_of_line = lf
 charset = utf-8
 multi_line_output = 3
+line_length = 88
 
 # Use 2 spaces for the HTML files
 [*.html]
