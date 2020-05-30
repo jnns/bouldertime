@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block body %}
+  <h1>So far so good.</h1>
+  <h2>Your booking code is: <tt>{{ booking }}</tt></h2>
+  <p>Date: {{ booking.date }}</p>
+  <p>Duration: {{ booking.start }} &mdash; {{ booking.end }}</p>
+  <p>Location: {{ booking.gym }}</p>
+  <p>Status: {{ booking.status }}</p>
+
+  <form method="post">
+    <h2>Are you sure you want to cancel the above booking?</h2>
+    {% csrf_token %}
+    <input type="submit" value="Yes, please cancel this booking." />
+    <a href="{{ booking.get_absolute_url }}">No, I want to keep this booking.</a>
+  </form>
+{% endblock %}

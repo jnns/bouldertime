@@ -1,0 +1,29 @@
+{% extends "core/gym_list.html" %}
+
+{% load i18n %}
+
+{% block body %}
+  <h1>So far so good.</h1>
+  <h2>Your booking code is: <tt>{{ booking }}</tt></h2>
+  <p>Date: {{ booking.date }}</p>
+  <p>Duration: {{ booking.start }} &mdash; {{ booking.end }}</p>
+  <p>Location: {{ booking.gym }}</p>
+
+  {% if booking.status == booking.STATUS_NEW %}
+    <p>{% trans "Please enter the activation code we sent to the phone number you gave us." %}</p>
+
+    {% for error in form.non_field_errors %}
+      {{ error }}
+      {% trans "You have 15 minutes to confirm this booking until it expires. After expiration you're allowed to book a slot again." %}
+    {% endfor %}
+
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        {{ field }}
+      {% endfor %}
+      <input type="submit" value="Confirm" />
+    </form>
+
+  {% endif %}
+{% endblock %}
