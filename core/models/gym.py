@@ -1,6 +1,8 @@
-from datetime import time
+from collections import defaultdict
+from datetime import time, timedelta
 
 from django.db import connection, models
+from django.utils.timezone import localdate
 from django.utils.translation import gettext_lazy as _
 
 
@@ -76,7 +78,13 @@ class Gym(models.Model):
         return range(self.opens_at.hour, self.closes_at.hour)
 
     def get_bookables(self):
-        bookables = {}
-        for hour in self.get_opening_hours():
-            bookables[hour] = list(self.get_available_end_hours(hour))
+        bookables = defaultdict(dict)
+        next_days = [
+            localdate() + timedelta(days=i) for i in range(self.num_days_available)
+        ]
+        for date in next_days:
+            for hour in self.get_opening_hours():
+                bookables[str(date)][hour] = list(
+                    self.get_available_end_hours(date, hour)
+                )
         return bookables

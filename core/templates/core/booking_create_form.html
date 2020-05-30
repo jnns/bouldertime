@@ -1,5 +1,7 @@
 {% extends "core/gym_list.html" %}
 
+{% load static %}
+
 {% block body %}
   Reserve a spot to go bouldering at
   <h1>{{ gym }}</h1>
@@ -9,5 +11,8 @@
   </script>
   {{ form.errors }}
   <div id=booking-control></div>
+{% endblock %}
 
+{% block scripts %}
+  <script src="{% static "index.js" %}"></script>
 {% endblock %}

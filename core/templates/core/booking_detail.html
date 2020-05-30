@@ -1,9 +1,38 @@
-{% extends "core/gym_list.html" %}
+{% extends "base.html" %}
+
+{% load i18n %}
 
 {% block body %}
-  <h1>So far so good.</h1>
-  <h2>Your booking code is: <tt>{{ booking }}</tt></h2>
+  <h1>Booking code: <tt>{{ booking.name }}</tt></h1>
   <p>Date: {{ booking.date }}</p>
   <p>Duration: {{ booking.start }} &mdash; {{ booking.end }}</p>
   <p>Location: {{ booking.gym }}</p>
+  <p>Status: {{ booking.get_status_display }}
+    <ul>
+      {% if booking.checkin_at %}
+      <li>Checked in: {{ booking.checkin_at|default:"not checked in yet." }}</li>
+      {% endif %}
+      {% if booking.checkout_at %}
+      <li>Checked out: {{ booking.checkout_at|default:"not checked out yet." }}</li>
+      {% endif %}
+    </ul>
+  </p>
+
+  {% if user.is_authenticated %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="submit" value="{{ form_caption }}" />
+    </form>
+  {% else %}
+    {% if booking.status == 'CONFIRMED' %}
+      <a href="{% url 'booking-calendar-file' booking=booking.name %}">Add this booking to your calendar</a> or just bookmark this page to be able to cancel it later. 
+      <a href="{% url 'booking-cancellation' booking=booking.name %}">Cancel this booking</a>
+
+      <p>Show the following QR code for faster check-in & check-out:</p>
+
+      {{ qr_code|safe }}
+    {% endif %}
+  {% endif %}
+
+
 {% endblock %}
