@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% load static %}
+
 {% block body %}
   {% trans "Reserve a spot to go bouldering at ... " %}
-  <form onchange='javascript:document.location.href="/g/" + this.id_gym.options[this.id_gym.selectedIndex].value'>
-    {{ form.gym }}
-  </form>
+  <div id="gym"></div>
 {% endblock body %}
+
+{% block scripts %}
+  <script>
+    window.gyms = {{ gyms|safe }};
+  </script>
+  <script src="{% static 'js/GymForm.js' %}"></script>
+{% endblock %}
