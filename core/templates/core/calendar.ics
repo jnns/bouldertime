@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+URL:{{ url }}
+DTSTART:{{ start }}
+DTEND:{{ end }}
+SUMMARY:Bouldertime @ {{ booking.gym }} 
+DESCRIPTION:{{ url }}
+
+Cancel: {{ cancellation_url }}
+LOCATION:{{ booking.gym.address }}
+END:VEVENT
+END:VCALENDAR
